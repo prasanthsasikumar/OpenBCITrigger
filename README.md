@@ -1,4 +1,4 @@
-# OpenBCITrigger - TCP/IP Trigger for Open BCI
+# HyperScanning[OpenBCITrigger] - TCP/IP Trigger for Open BCI
 
 [![N|Solid](https://github.com/prasanthsasikumar/localMultiplayer/blob/master/powerdByLogo.png)](http://empathiccomputing.org/)
 
