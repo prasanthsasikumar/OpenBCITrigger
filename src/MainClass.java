@@ -1,38 +1,23 @@
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 
-import java.awt.TextArea;
-import javax.swing.JToggleButton;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 
-public class frame1 {
+public class MainClass {
 
 	private JFrame frmAib;
 	public StimulusSender sender1 = new StimulusSender();
@@ -41,10 +26,12 @@ public class frame1 {
 	public String client2 = "192.168.137.98";
 	public Long startMarker = 1111L;
 	public Long endMarker = 1234L;
+	public int portNumber = 15361;
+	public long delayBeforeStart = 7000;
+	public long duration = 60000;
 	private JTextField firstAddress;
 	private JTextField secondAddress;
 	private boolean isConnected;
-	//add port address
 
 	/**
 	 * Launch the application.
@@ -53,7 +40,7 @@ public class frame1 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame1 window = new frame1();
+					MainClass window = new MainClass();
 					window.frmAib.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +56,7 @@ public class frame1 {
 	 * @throws MalformedURLException 
 	 * @throws LineUnavailableException 
 	 */
-	public frame1() throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public MainClass() throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException {
 		initialize();
 	}
 
@@ -91,14 +78,14 @@ public class frame1 {
 		frmAib.getContentPane().add(status);
 		
 		firstAddress = new JTextField();
-		firstAddress.setText("172.24.3.162");
+		firstAddress.setText(client1);
 		firstAddress.setBounds(12, 34, 116, 22);
 		frmAib.getContentPane().add(firstAddress);
 		firstAddress.setColumns(10);
 		
 		secondAddress = new JTextField();
 		secondAddress.setEnabled(false);
-		secondAddress.setText("192.168.1.1");
+		secondAddress.setText(client2);
 		secondAddress.setBounds(283, 34, 116, 22);
 		frmAib.getContentPane().add(secondAddress);
 		secondAddress.setColumns(10);	
@@ -138,9 +125,9 @@ public class frame1 {
 					 	System.out.print("\nConnecting");
 					 	status.setText("Connecting");
 					 	//status.repaint();
-					 	sender1.open(client1, 15361);
+					 	sender1.open(client1, portNumber);
 					 	if(chckbxEnable.isSelected()) {
-					 		sender2.open(client2, 15361);
+					 		sender2.open(client2, portNumber);
 						}
 					 	System.out.print("\nConnected");
 					 	status.setText("Connected");
@@ -176,7 +163,7 @@ public class frame1 {
 				 	status.repaint();
 				 	//ToneGenerate.generateTone(1400, 500, 100, true);
 
-				 	AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("C:\\Users\\psk\\eclipse-workspace\\OpenBciTrigger\\src\\stop.wav"));
+				 	AudioInputStream audioIn = AudioSystem.getAudioInputStream(MainClass.class.getResource("stop.wav"));
 					Clip clip = AudioSystem.getClip();
 					clip.open(audioIn);
 					clip.start();
@@ -200,11 +187,11 @@ public class frame1 {
 						return;
 					}
 					status.repaint();
-				 	AudioInputStream audioInReady = AudioSystem.getAudioInputStream(new File("C:\\Users\\psk\\eclipse-workspace\\OpenBciTrigger\\src\\ready.wav"));
+				 	AudioInputStream audioInReady = AudioSystem.getAudioInputStream(MainClass.class.getResource("ready.wav"));
 					Clip clipReady = AudioSystem.getClip();
 					clipReady.open(audioInReady);
 					clipReady.start();
-					Thread.sleep(7000);
+					Thread.sleep(delayBeforeStart);
 					
 					System.out.print("\nSending Start marker..\n ");	
 					status.setText("Sending Start");
@@ -217,13 +204,13 @@ public class frame1 {
 				 	
 				 	
 				 	//ToneGenerate.generateTone(2000, 500, 100, true);
-				 	AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(new File("C:\\Users\\psk\\eclipse-workspace\\OpenBciTrigger\\src\\start.wav"));
+				 	AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(MainClass.class.getResource("start.wav"));
 					Clip clip2 = AudioSystem.getClip();
 					clip2.open(audioIn2);
 					clip2.start();
 				 	if(chckbxAutoEnd.isSelected()) {
-				 		Thread.sleep(60000);
-				 		AudioInputStream audioIn4 = AudioSystem.getAudioInputStream(new File("C:\\Users\\psk\\eclipse-workspace\\OpenBciTrigger\\src\\stop.wav"));
+				 		Thread.sleep(duration);
+				 		AudioInputStream audioIn4 = AudioSystem.getAudioInputStream(MainClass.class.getResource("stop.wav"));
 						Clip clip4 = AudioSystem.getClip();
 				 		System.out.print("sending end trigger!");
 				 		//ToneGenerate.generateTone(1400, 500, 100, true);				 		
@@ -281,6 +268,11 @@ public class frame1 {
 		tglbtnAudio.setSelected(true);
 		tglbtnAudio.setBounds(355, 220, 65, 25);
 		frmAib.getContentPane().add(tglbtnAudio);
+		
+		AudioInputStream audioInReady = AudioSystem.getAudioInputStream(MainClass.class.getResource("ready.wav"));
+		Clip clipReady = AudioSystem.getClip();
+		clipReady.open(audioInReady);
+		clipReady.start();
 		
 	}
 }
