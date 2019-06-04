@@ -1,7 +1,7 @@
 # HyperScanning [OpenBCITrigger]
 [![N|Solid](https://github.com/prasanthsasikumar/localMultiplayer/blob/master/powerdByLogo.png)](http://empathiccomputing.org/)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/prasanthsasikumar/localMultiplayer)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/prasanthsasikumar/OpenBCITrigger)
 
 TCP/IP Trigger for Open BCI
 
