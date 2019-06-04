@@ -19,6 +19,12 @@ This section explains the implementation of Trigger used to mark the start and e
 
 ### Building
 - Written in Java, can be build according to user needs. We export from eclipse as executable jar.  
+- If you dont have eclipse, you can complile and Run using java
+```sh
+$ cd OpenVibe_Trigger
+$ javac StimulusSender.java
+$ java StimulusSender
+```
 
 ### Structure
 - MainClass - Makes use of javax to create UI. All variables are initialized in the begining. There is a function corresponding to each button that is evoked when pressed
