@@ -31,6 +31,7 @@ This section explains the implementation of Trigger used to mark the start and e
 - Issues can be reported here - https://github.com/prasanthsasikumar/OpenBCITrigger/issues/new
 
 
+### Screenshot
 [![N|Solid](https://github.com/prasanthsasikumar/OpenBCITrigger/blob/master/src/OpenBCITriggerImg.png)](https://github.com/prasanthsasikumar/OpenBCITrigger)
 
 
