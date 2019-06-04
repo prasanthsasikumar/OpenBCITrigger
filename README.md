@@ -1,8 +1,9 @@
-# HyperScanning[OpenBCITrigger] - TCP/IP Trigger for Open BCI
-
+# HyperScanning [OpenBCITrigger]
 [![N|Solid](https://github.com/prasanthsasikumar/localMultiplayer/blob/master/powerdByLogo.png)](http://empathiccomputing.org/)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/prasanthsasikumar/localMultiplayer)
+
+TCP/IP Trigger for Open BCI
 
 This is part of the hyperscanning project that explores how Virtual Reality(VR) can be used to help people understand each other better in face-to-face and remote collaboration, with the ultimate goal of designing an empathic computing interface.  Simultaneous and classification of data from multiple physiological sensors will be carried out to study inter-brain synchrony cognitive load and emotional responses of two or more collaborators in real and virtual environments.
 
